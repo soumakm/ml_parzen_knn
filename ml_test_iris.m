@@ -14,7 +14,7 @@ y = dlmread('iris_test.txt');
 
 p = ml_classifier(c, x, y);
 
-fprintf('The performance of Maximum Likelihood classifier on iris data set is %f\n',p);
+fprintf('The performance of Maximum Likelihood classifier on iris data set is %.2f\n',p);
 
 
     

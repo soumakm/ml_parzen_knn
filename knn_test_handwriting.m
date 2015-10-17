@@ -9,7 +9,7 @@ close all;
 clear;
 
 % set k
-k = 5;
+k = 1;
 
 % read data, 1st column is the class
 x = dlmread('handwriting_train.txt');
