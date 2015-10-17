@@ -10,8 +10,8 @@ clear;
 % number of class
 c = 10;
 
-%beta 
-b=0.5;
+%beta , best b=0.1
+b=0.1;
 
 % read data, 1st column is the class
 x = dlmread('handwriting_train.txt');
