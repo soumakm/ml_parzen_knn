@@ -8,8 +8,8 @@
 close all;
 clear;
 
-% set window size
-k = 3;
+% set k, best k=1;k=2;k=3;k=5
+k = 5;
 
 % read data, 1st column is the class
 ux = dlmread('wine_uci_train.txt');

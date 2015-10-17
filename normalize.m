@@ -17,6 +17,6 @@ end
 v = var(x1);
 for i=1:rows
     for j=1:cols
-        y(i,j) = x1(i,j)/v(j);  
+        y(i,j) = x1(i,j)/sqrt(v(j));  
     end
 end

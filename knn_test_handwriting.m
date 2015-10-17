@@ -1,4 +1,4 @@
-% knn testing program for iris data set
+% knn testing program for handwriting data set
 % This file should read files one for training, and one for test
 % It should arrange the file data so that test vector should only have feature 
 % it should also provide the training data in the form of a matrix
@@ -8,14 +8,16 @@
 close all;
 clear;
 
-% set k, best k=3, k=6
-k = 3;
+% set k
+k = 5;
 
 % read data, 1st column is the class
-x = dlmread('iris_training.txt');
+x = dlmread('handwriting_train.txt');
+%x = [ux(1:end,1),normalize(ux(:,2:end))];
 
 % read test data which are to be classified
-y = dlmread('iris_test.txt');
+y = dlmread('handwriting_test.txt');
+%y = [uy(1:end,1),normalize(uy(:,2:end))];
 
 % number of rows in test data
 n = size(y,1);
@@ -27,7 +29,7 @@ fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
 % loop through each test data sample
 for i=1:n
         
-    I = knn(y(i,2:end), x, k); % y should be stiped of class number (col1)
+    I = knn(y(i,2:end), x, k); % y should be stipped of class number (col1)
     if (y(i) == I) % if they are correct
         count = count+1;
         fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t yes\n', i, y(i), I);
@@ -36,5 +38,5 @@ for i=1:n
     end 
 end    
  
-fprintf('The performance of KNN classifier on iris data set is %.2f\n',count/n*100);
+fprintf('The performance of KNN classifier on handwriting data set is %.2f\n',count/n*100);
 

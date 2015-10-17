@@ -9,7 +9,7 @@ clear;
 %modify next two lines based on data sets
 % number of class, classes are numbered 1, 2, 3
 c = 3;
-% set window size
+% set window size, best h=1
 h = 1;
 
 % read data, 1st column is the class

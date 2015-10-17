@@ -1,4 +1,4 @@
-% parzen window testing program 
+% parzen window testing program for iris data set
 % This file should read files one for training, and one for test
 % It should arrange the file data so that test vector should only have feature 
 % it should also provide the training data in the form of a matrix
