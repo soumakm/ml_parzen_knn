@@ -50,7 +50,7 @@ fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
 for i=1:k
     % loop through gaussian distribution for each class 
     for j=1:c
-        f(j) = gaussian_mult(y(i, 2:end), u(j,:), sigma{j});
+        f(j) = m(j,2)*gaussian_mult(y(i, 2:end), u(j,:), sigma{j});
     end
     [~, I] = max(f);
     if (y(i) == I) % if they are correct

@@ -1,4 +1,4 @@
-% maximum likelihood testing program 
+% maximum likelihood testing program for handwriting
 % This file should read files one for training, and one for test
 % It should arrange the file data so that 1st column is the class 
 % rest of the columns are feature vector
@@ -8,11 +8,13 @@ clear;
 
 %modify next two lines based on data sets
 % number of class
-c = 3;
+c = 10;
 
 % read data, 1st column is the class
-x = dlmread('iris_training.txt');
-y = dlmread('iris_test.txt');
+x = dlmread('handwriting_train.txt');
+
+% read test data which are to be classified
+y = dlmread('handwriting_test.txt');
 
 %number of features, first column is class!
 n = size(x,2) - 1;
@@ -34,7 +36,7 @@ for i=1:c
     endID = sum(m(1:i,2));
     u(i,:) = mean(x(startID:endID , 2:end));
     sigma{i} = cov(x(startID:endID , 2:end));
-end   
+end    
 
 %number of test samples
 k = size(y,1);
@@ -61,7 +63,7 @@ for i=1:k
 end    
 p = h/k*100;
 
-fprintf('The performance of Maximum Likelihood classifier on iris data set is %.2f\n',p);
+fprintf('The performance of Maximum Likelihood classifier on h data set is %.2f\n',p);
 
 
     

@@ -1,24 +1,28 @@
-% maximum likelihood testing program 
+% maximum likelihood testing program for handwriting
 % This file should read files one for training, and one for test
 % It should arrange the file data so that 1st column is the class 
 % rest of the columns are feature vector
 % it should also order the data according to class number
+close all;
+clear;
 
 %modify next two lines based on data sets
 % number of class
-c = 3;
+c = 10;
+
+%beta 
+b=0.5;
 
 % read data, 1st column is the class
-ux = dlmread('wine_uci_train.txt');
-x = [ux(1:end,1),normalize(ux(:,2:end))];
+x = dlmread('handwriting_train.txt');
 
 % read test data which are to be classified
-uy = dlmread('wine_uci_test.txt');
-y = [uy(1:end,1),normalize(uy(:,2:end))];
+y = dlmread('handwriting_test.txt');
 
 %number of features, first column is class!
 n = size(x,2) - 1;
 
+In = eye(n);
 %number of samples in each class
 m = no_of_samples(x) ;
 
@@ -35,7 +39,7 @@ for i=1:c
     startID = 1+sum(m(1:i-1,2));
     endID = sum(m(1:i,2));
     u(i,:) = mean(x(startID:endID , 2:end));
-    sigma{i} = cov(x(startID:endID , 2:end));
+    sigma{i} = (1-b)*cov(x(startID:endID , 2:end)) + b*In;
 end    
 
 %number of test samples
@@ -53,17 +57,17 @@ for i=1:k
         f(j) = gaussian_mult(y(i, 2:end), u(j,:), sigma{j});
     end
     [~, I] = max(f);
-    if (y(i) == I) % if they are correct
+    if (y(i) == I-1) % if they are correct
         h = h+1;
-        fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t yes\n', i, y(i), I);
+        fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t yes\n', i, y(i), I-1);
     else
-        fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t no\n', i, y(i), I);
+        fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t no\n', i, y(i), I-1);
     end    
    
 end    
 p = h/k*100;
 
-fprintf('The performance of Maximum Likelihood classifier on wine data set is %.2f\n',p);
+fprintf('The performance of Maximum Likelihood classifier on handwriting data set is %.2f\n',p);
 
 
     
