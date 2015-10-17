@@ -9,8 +9,12 @@
 c = 3;
 
 % read data, 1st column is the class
-x = dlmread('iris_training.txt');
-y = dlmread('iris_test.txt');
+ux = dlmread('wine_uci_train.txt');
+x = [ux(1:end,1),normalize(ux(:,2:end))];
+
+% read test data which are to be classified
+uy = dlmread('wine_uci_test.txt');
+y = [uy(1:end,1),normalize(uy(:,2:end))];
 
 %number of features, first column is class!
 n = size(x,2) - 1;
@@ -32,7 +36,7 @@ for i=1:c
     endID = sum(m(1:i,2));
     u(i,:) = mean(x(startID:endID , 2:end));
     sigma{i} = cov(x(startID:endID , 2:end));
-end   
+end    
 
 %number of test samples
 k = size(y,1);
@@ -59,7 +63,7 @@ for i=1:k
 end    
 p = h/k*100;
 
-fprintf('The performance of Maximum Likelihood classifier on iris data set is %.2f\n',p);
+fprintf('The performance of Maximum Likelihood classifier on wine data set is %.2f\n',p);
 
 
     
