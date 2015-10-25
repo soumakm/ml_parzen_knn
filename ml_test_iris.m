@@ -14,6 +14,7 @@ c = 3;
 x = dlmread('iris_training.txt');
 y = dlmread('iris_test.txt');
 
+tic
 %number of features, first column is class!
 n = size(x,2) - 1;
 
@@ -43,7 +44,7 @@ f = zeros(1,c);
 %scalar to hold number of correct classification
 h = 0;
 
-fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
+%fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
 %loop through each test sample
 for i=1:k
     % loop through gaussian distribution for each class 
@@ -53,15 +54,16 @@ for i=1:k
     [~, I] = max(f);
     if (y(i) == I) % if they are correct
         h = h+1;
-        fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t yes\n', i, y(i), I);
+       % fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t yes\n', i, y(i), I);
     else
-        fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t no\n', i, y(i), I);
+       % fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t no\n', i, y(i), I);
     end    
    
 end    
 p = h/k*100;
 
 fprintf('The performance of Maximum Likelihood classifier on iris data set is %.2f\n',p);
+T=toc
 
 
     

@@ -10,14 +10,15 @@ clear;
 % number of class, classes are numbered 1, 2, 3
 c = 3;
 % set window size, best h=1
-h = 1;
+h = 1.1;
 
 % read data, 1st column is the class
 ux = dlmread('wine_uci_train.txt');
-x = [ux(1:end,1),normalize(ux(:,2:end))];
-
-% read test data which are to be classified
 uy = dlmread('wine_uci_test.txt');
+
+tic
+%normalize
+x = [ux(1:end,1),normalize(ux(:,2:end))];
 y = [uy(1:end,1),normalize(uy(:,2:end))];
 
 
@@ -53,7 +54,7 @@ p = zeros(1,c);
 % declare a scalar to count the correct classification
 count = 0;
 
-fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
+%fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
 % loop through each test data sample, 1st column is class number, col=2:end
 % represent feature
 for i=1:n
@@ -63,11 +64,12 @@ for i=1:n
     [~, I] = max(p);
     if (y(i) == I) % if they are correct
         count = count+1;
-        fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t yes\n', i, y(i), I);
+      %  fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t yes\n', i, y(i), I);
     else
-        fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t no\n', i, y(i), I);
+      %  fprintf('%d\t\t\t\t %d\t\t\t\t %d\t\t\t\t no\n', i, y(i), I);
     end 
 end    
  
 fprintf('The performance of Parzen window classifier on wine data set is %.2f\n',count/n*100);
 
+T=toc

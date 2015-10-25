@@ -10,14 +10,11 @@ clear;
 % number of class, classes are numbered 1, 2, 3
 c = 3;
 % set window size, h=0.5
-h = 0.2;
+h = 0.5;
 
 % read data, 1st column is the class
 x = dlmread('iris_training.txt');
 
-% read test data which are to be classified
-y = dlmread('iris_test.txt');
-tic
 %size of training data
 m = size(x,1);
 %arrange training data so that each class has its own matrix
@@ -42,7 +39,7 @@ for i=1:m
 end
 
 % number of rows in test data
-n = size(y,1);
+n = m-1;
 % allocate a vector to hold probability density of each class
 p = zeros(1,c);
 % declare a scalar to count the correct classification
@@ -50,12 +47,26 @@ count = 0;
 
 %fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
 % loop through each test data sample
-for i=1:n
-    
+a=1;
+b=1;
+e=1;
+for i=1:m
+    for j=1:c
+        if(x(i) == 1)
+            x1(a,:) = [];
+            a = a+1;
+        elseif (x(i) == 2)
+            x2(b,:) = [];
+            b = b+1;
+        elseif (x(i) == 3)
+            x3(c,:) = [];
+            c = c+1;
+        end    
+            
         p(1) = parzen_window(y(i,2:end), x1, h);
         p(2) = parzen_window(y(i,2:end), x2, h);
         p(3) = parzen_window(y(i,2:end), x3, h);
-     
+    end  
     
     [~, I] = max(p);
     if (y(i) == I) % if they are correct
@@ -66,6 +77,5 @@ for i=1:n
     end 
 end    
  
-fprintf('The performance of Parzen window classifier on iris data set is %.2f\n',count/n*100);
+fprintf('The performance of Parzen window classifier for h = %f on iris data set is %.2f\n',h,count/n*100);
 
-T=toc
