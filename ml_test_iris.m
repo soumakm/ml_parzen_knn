@@ -5,6 +5,7 @@
 % it should also order the data according to class number
 close all;
 clear;
+clc;
 
 %modify next two lines based on data sets
 % number of class
