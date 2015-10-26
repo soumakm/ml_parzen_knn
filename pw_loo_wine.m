@@ -18,7 +18,7 @@ x = [ux(1:end,1),normalize(ux(:,2:end))];
 
 %size of training data
 m = size(x,1);
-for h=1:0.1:2
+
 %arrange training data so that each class has its own matrix
     a=1;
     b=1;
@@ -45,22 +45,33 @@ for h=1:0.1:2
     % allocate a vector to hold probability density of each class
     p = zeros(1,c);
     % declare a scalar to count the correct classification
+for h=1:0.1:2
     count = 0;
-
+    a=1;
+b=1;
+e=1;
     %fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
     % loop through each test data sample, 1st column is class number, col=2:end
     % represent feature
     for i=1:m
-        if(x(i) == 1)
-            x1(1,:) = [];
-        elseif (x(i) == 2)
-            x2(1,:) = [];
-        elseif (x(i) == 3)
-            x3(1,:) = [];
-        end    
-        p(1) = parzen_window(x(i,2:end), x1, h);
-        p(2) = parzen_window(x(i,2:end), x2, h);
-        p(3) = parzen_window(x(i,2:end), x3, h);
+            z1 = x1;
+            z2 = x2;
+            z3 = x3;
+
+            if(x(i) == 1)
+                z1(a,:) = [];
+                a = a+1;
+            elseif (x(i) == 2)
+                z2(b,:) = [];
+                b = b+1;
+            elseif (x(i) == 3)
+                z3(e,:) = [];
+                e = e + 1;
+            end    
+
+            p(1) = parzen_window(x(i,2:end), z1, h);
+            p(2) = parzen_window(x(i,2:end), z2, h);
+            p(3) = parzen_window(x(i,2:end), z3, h);
         [~, I] = max(p);
         if (x(i) == I) % if they are correct
             count = count+1;

@@ -10,7 +10,7 @@ clear;
 % number of class, classes are numbered 1, 2, 3
 c = 10;
 % set window size, best h=2.0
-h = 2.0;
+h = 1.0;
 
 % read data, 1st column is the class
 x = dlmread('handwriting_train.txt');

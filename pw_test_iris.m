@@ -10,7 +10,7 @@ clear;
 % number of class, classes are numbered 1, 2, 3
 c = 3;
 % set window size, h=0.5
-h = 0.2;
+h = 0.5;
 
 % read data, 1st column is the class
 x = dlmread('iris_training.txt');

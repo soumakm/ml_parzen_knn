@@ -16,7 +16,7 @@ x = dlmread('handwriting_train.txt');
 %size of training data
 m = size(x,1);
 
-for h=1.7:0.1:2.4
+
 %arrange training data so that each class has its own matrix
     a0=1;
     a1=1;
@@ -86,45 +86,76 @@ for h=1.7:0.1:2.4
     
     % allocate a vector to hold probability density of each class
     p = zeros(1,c);
+for h=0.7:0.1:1.5
     % declare a scalar to count the correct classification
     count = 0;
-
+    a0=1;
+    a1=1;
+    a2=1;
+    a3=1;
+    a4=1;
+    a5=1;
+    a6=1;
+    a7=1;
+    a8=1;
+    a9=1;
     %fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
     % loop through each test data sample, 1st column is class number, col=2:end
     % represent feature
     for i=1:m
+            z0 = x0;
+            z1 = x1;
+            z2 = x2;
+            z3 = x3;
+            z4 = x4;
+            z5 = x5;
+            z6 = x6;
+            z7 = x7;
+            z8 = x8;
+            z9 = x9;
+
             if(x(i) == 0)
-                x0(1,:) = [];
+                z0(a0,:) = [];
+                a0 = a0+1;
             elseif (x(i) == 1)
-                x1(1,:) = [];
+                z1(a1,:) = [];
+                a1 = a1+1;
             elseif (x(i) == 2)
-                x2(1,:) = [];
+                z2(a2,:) = [];
+                a2 = a2 + 1;
             elseif (x(i) == 3)
-                x3(1,:) = [];
+                z3(a3,:) = [];
+                a3 = a3 + 1;
             elseif (x(i) == 4)
-                x4(1,:) = [];
+                z4(a4,:) = [];
+                a4 = a4 + 1;
             elseif (x(i) == 5)
-                x5(1,:) = [];
+                z5(a5,:) = [];
+                a5 = a5 + 1;
             elseif (x(i) == 6)
-                x6(1,:) = [];
+                z6(a6,:) = [];
+                a6 = a6 + 1;
             elseif (x(i) == 7)
-                x7(1,:) = [];
+                z7(a7,:) = [];
+                a7 = a7 + 1;
             elseif (x(i) == 8)
-                x8(1,:) = []; 
+                z8(a8,:) = [];
+                a8 = a8 + 1; 
             elseif (x(i) == 9)
-                x9(1,:) = [];    
-            end 
+                z9(a9,:) = [];
+                a9 = a9 + 1;      
+            end    
         
-            p(1) = parzen_window(x(i,2:end), x0, h);
-            p(2) = parzen_window(x(i,2:end), x1, h);
-            p(3) = parzen_window(x(i,2:end), x2, h);
-            p(4) = parzen_window(x(i,2:end), x3, h);
-            p(5) = parzen_window(x(i,2:end), x4, h);
-            p(6) = parzen_window(x(i,2:end), x5, h);
-            p(7) = parzen_window(x(i,2:end), x6, h);
-            p(8) = parzen_window(x(i,2:end), x7, h);
-            p(9) = parzen_window(x(i,2:end), x8, h);
-            p(10) = parzen_window(x(i,2:end), x9, h);
+            p(1) = parzen_window(x(i,2:end), z0, h);
+            p(2) = parzen_window(x(i,2:end), z1, h);
+            p(3) = parzen_window(x(i,2:end), z2, h);
+            p(4) = parzen_window(x(i,2:end), z3, h);
+            p(5) = parzen_window(x(i,2:end), z4, h);
+            p(6) = parzen_window(x(i,2:end), z5, h);
+            p(7) = parzen_window(x(i,2:end), z6, h);
+            p(8) = parzen_window(x(i,2:end), z7, h);
+            p(9) = parzen_window(x(i,2:end), z8, h);
+            p(10) = parzen_window(x(i,2:end), z9, h);
         [~, I] = max(p);
         if (x(i) == (I-1)) % if they are correct
             count = count+1;

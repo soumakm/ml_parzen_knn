@@ -17,7 +17,7 @@ x = dlmread('iris_training.txt');
 %size of training data
 m = size(x,1);
 %arrange training data so that each class has its own matrix
-for h=0.1:0.1:0.6
+
 a=1;
 b=1;
 e=1;
@@ -45,20 +45,30 @@ count = 0;
 
 %fprintf('Sample No.  Actual Class  Classified Class  Corrrect?\n');
 % loop through each test data sample
-
+for h=0.2:0.1:1.0
+    count = 0;
+a=1;
+b=1;
+e=1;
     for i=1:m
+            z1 = x1;
+            z2 = x2;
+            z3 = x3;
 
             if(x(i) == 1)
-                x1(1,:) = [];
+                z1(a,:) = [];
+                a = a+1;
             elseif (x(i) == 2)
-                x2(1,:) = [];
+                z2(b,:) = [];
+                b = b+1;
             elseif (x(i) == 3)
-                x3(1,:) = [];
+                z3(e,:) = [];
+                e = e + 1;
             end    
 
-            p(1) = parzen_window(x(i,2:end), x1, h);
-            p(2) = parzen_window(x(i,2:end), x2, h);
-            p(3) = parzen_window(x(i,2:end), x3, h);
+            p(1) = parzen_window(x(i,2:end), z1, h);
+            p(2) = parzen_window(x(i,2:end), z2, h);
+            p(3) = parzen_window(x(i,2:end), z3, h);
 
         [~, I] = max(p);
         if (x(i) == I) % if they are correct

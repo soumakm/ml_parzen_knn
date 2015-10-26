@@ -10,7 +10,7 @@ clear;
 % number of class, classes are numbered 1, 2, 3
 c = 3;
 % set window size, best h=1
-h = 1.1;
+h = 1.7;
 
 % read data, 1st column is the class
 ux = dlmread('wine_uci_train.txt');
